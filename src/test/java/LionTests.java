@@ -1,15 +1,13 @@
-import com.example.Cat;
 import com.example.Feline;
 import com.example.Lion;
+import com.example.Predator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
-
 import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -17,6 +15,7 @@ public class LionTests {
     private Lion lion;
 @Spy
     Feline feline;
+    Predator predator;
 
     @Before
     public void setUp() {
@@ -45,12 +44,27 @@ public class LionTests {
     }
     @Test
     public void doesHasManeFalse() throws Exception {
-        Lion lionSamets = new Lion("Самка");
-        Lion lionSpy = Mockito.spy(lionSamets);
+        Lion lionSamka = new Lion("Самка");
+        Lion lionSpy = Mockito.spy(lionSamka);
         boolean result = lionSpy.doesHaveMane();
         Mockito.verify(lionSpy, Mockito.times(1)).doesHaveMane();
         Assert.assertFalse(result);
     }
 
-
+    @Test
+    public void fullConstructorOfLionSamets() throws Exception {
+    Lion lionSametsFull = new Lion(predator, "Самец");
+    Lion lionSpy = Mockito.spy(lionSametsFull);
+    boolean result = lionSpy.doesHaveMane();
+    Mockito.verify(lionSpy, Mockito.times(1)).doesHaveMane();
+    Assert.assertTrue(result);
+    }
+    @Test
+    public void fullConstructorOfLionSamka() throws Exception {
+    Lion lionSamkaFull = new Lion(predator, "Самка");
+    Lion lionSpy = Mockito.spy(lionSamkaFull);
+    boolean result = lionSpy.doesHaveMane();
+    Mockito.verify(lionSpy, Mockito.times(1)).doesHaveMane();
+    Assert.assertFalse(result);
+}
 }
